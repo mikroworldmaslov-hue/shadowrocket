@@ -8,6 +8,22 @@
 # DIRECT-блок можно проредить, только если проверить логом, что база сама не заворачивает эти домены в PROXY (закомментировать блок → открыть сайт → в логе смотреть "-> DIRECT" или "-> PROXY"). Пока не проверено — держим как есть.
 
 [Rule]
+# ======================= РЕЗАТЬ СРАЗУ (REJECT) =======================
+# Трекеры/аналитика, которые лента ВК дёргает пачкой. Раньше блокировались через DNS (резолв в 0.0.0.0), но каждый круг к удалённому DoH — ~200 мс, и это тормозило прогрузку. REJECT дропает их мгновенно, без DNS.
+# Стоит первым — first match wins.
+DOMAIN-SUFFIX,vk-analytics.ru,REJECT
+DOMAIN-SUFFIX,appmetrica.yandex.net,REJECT
+DOMAIN-SUFFIX,google-analytics.com,REJECT
+DOMAIN-SUFFIX,app-analytics-services.com,REJECT
+DOMAIN-SUFFIX,apptracer.ru,REJECT
+DOMAIN-SUFFIX,mradx.net,REJECT
+DOMAIN,ad.mail.ru,REJECT
+DOMAIN,rv.mail.ru,REJECT
+DOMAIN,sdk.mail.ru,REJECT
+DOMAIN,clientapi.mail.ru,REJECT
+DOMAIN,ogads-pa.clients6.google.com,REJECT
+DOMAIN,startup.mobile.yandex.net,REJECT
+
 # ======================= ЧЕРЕЗ ТОННЕЛЬ (PROXY) =======================
 # --- AI-сервисы ---
 DOMAIN-SUFFIX,aistudio.google.com,PROXY
