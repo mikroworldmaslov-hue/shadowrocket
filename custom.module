@@ -2,8 +2,10 @@
 #!desc = Поверх основного конфига
 
 # Базовый конфиг заканчивается на FINAL,DIRECT — всё несовпавшее идёт напрямую.
-# Здесь: 1) что нужно завернуть в тоннель (PROXY), 2) money/gov/бизнес — явно DIRECT
-# (защита от случайного перехвата PROXY-списками базы), 3) [Host] — быстрый DNS.
+# Здесь: 1) что нужно завернуть в тоннель (PROXY), 2) money/gov/бизнес — явно DIRECT (защита от случайного перехвата PROXY-списками базы), 3) [Host] — быстрый DNS.
+#
+# Проксируемое (AI/Google-аккаунт) НЕ добавляем в [Host]: проксируемые домены должны резолвиться на стороне тоннеля, а не системным (прямым) DNS.
+# DIRECT-блок можно проредить, только если проверить логом, что база сама не заворачивает эти домены в PROXY (закомментировать блок → открыть сайт → в логе смотреть "-> DIRECT" или "-> PROXY"). Пока не проверено — держим как есть.
 
 [Rule]
 # ======================= ЧЕРЕЗ ТОННЕЛЬ (PROXY) =======================
@@ -21,8 +23,7 @@ DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,PROXY
 DOMAIN-SUFFIX,alkaliminer-pa.clients6.google.com,PROXY
 
 # --- Google-аккаунт (нужен для входа в AI) ---
-DOMAIN,accounts.google.com,PROXY
-DOMAIN-SUFFIX,accounts.google.com,PROXY
+# accounts.google.com покрывается keyword-правилом ниже, отдельные строки убраны.
 DOMAIN,myaccount.google.com,PROXY
 DOMAIN-KEYWORD,accounts.google,PROXY
 
@@ -94,10 +95,23 @@ DOMAIN-SUFFIX,githubusercontent.com,DIRECT
 DOMAIN-SUFFIX,githubassets.com,DIRECT
 DOMAIN-SUFFIX,github.io,DIRECT
 
+# --- VK (симметрия с [Host]: и маршрут, и DNS прямые, без рассинхрона) ---
+DOMAIN-SUFFIX,vk.com,DIRECT
+DOMAIN-SUFFIX,vk.ru,DIRECT
+DOMAIN-SUFFIX,userapi.com,DIRECT
+DOMAIN-SUFFIX,vkuserphoto.ru,DIRECT
+DOMAIN-SUFFIX,vkuser.net,DIRECT
+DOMAIN-SUFFIX,vkvideo.ru,DIRECT
+DOMAIN-SUFFIX,okcdn.ru,DIRECT
+
+# --- Яндекс (только ya.ru и почта — как в [Host], без рекламных доменов) ---
+DOMAIN,ya.ru,DIRECT
+DOMAIN-SUFFIX,mail.yandex.ru,DIRECT
+DOMAIN-SUFFIX,mail.yandex.net,DIRECT
+
 [Host]
 # Резолв через системный DNS — быстро и надёжно, в обход перегруженного DoH.
-# Здесь всё, что критично к задержке DNS. Для апекс-домена нужна отдельная
-# строка без "*." (звёздочка ловит только поддомены).
+# Здесь всё, что критично к задержке DNS. Для апекс-домена нужна отдельная строка без "*." (звёздочка ловит только поддомены).
 
 # --- Т-Банк ---
 *.tinkoff.ru = server:system
