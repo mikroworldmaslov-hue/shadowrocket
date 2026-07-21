@@ -23,14 +23,14 @@ DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,PROXY
 DOMAIN-SUFFIX,alkaliminer-pa.clients6.google.com,PROXY
 
 # --- Google-аккаунт (нужен для входа в AI) ---
-# accounts.google.com покрывается keyword-правилом ниже, отдельные строки убраны.
 DOMAIN,myaccount.google.com,PROXY
 DOMAIN-KEYWORD,accounts.google,PROXY
 
 # --- Платёжный сервис ---
 DOMAIN-SUFFIX,platipomiru.com,PROXY
 
-# --- Apple (App Store/iCloud через тоннель; картинки mzstatic/icloud-content из РФ напрямую не грузятся, поэтому PROXY). Пуши — DIRECT, правило выше apple.com, чтобы выигрывало по порядку (иначе apple.com,PROXY перехватит). ---
+# --- Apple (App Store/iCloud через тоннель; картинки из РФ напрямую не грузятся).
+#     Пуши — DIRECT, правило выше apple.com, чтобы выигрывало по порядку. ---
 DOMAIN-SUFFIX,push.apple.com,DIRECT
 DOMAIN-SUFFIX,apple.com,PROXY
 DOMAIN-SUFFIX,mzstatic.com,PROXY
@@ -39,7 +39,7 @@ DOMAIN-SUFFIX,icloud-content.com,PROXY
 DOMAIN-SUFFIX,cdn-apple.com,PROXY
 
 # ======================= НАПРЯМУЮ (DIRECT) =======================
-# --- Т-Банк (бывш. Тинькофф) ---
+# --- Т-Банк ---
 DOMAIN-SUFFIX,tinkoff.ru,DIRECT
 DOMAIN-SUFFIX,tbank.ru,DIRECT
 DOMAIN-SUFFIX,t-bank-app.ru,DIRECT
@@ -64,7 +64,7 @@ DOMAIN-SUFFIX,ozon.ru,DIRECT
 DOMAIN-SUFFIX,ozone.ru,DIRECT
 DOMAIN-SUFFIX,ozonusercontent.com,DIRECT
 
-# --- ZenMoney (агрегатор финансов) ---
+# --- ZenMoney ---
 DOMAIN-SUFFIX,zenmoney.ru,DIRECT
 DOMAIN-SUFFIX,zenmoney.app,DIRECT
 
@@ -90,15 +90,24 @@ DOMAIN-SUFFIX,sentry.io,DIRECT
 DOMAIN-SUFFIX,datadoghq.com,DIRECT
 DOMAIN-KEYWORD,datadog,DIRECT
 
-# --- GitHub (без рекламы, ускоряем резолв) ---
+# --- GitHub ---
 DOMAIN-SUFFIX,github.com,DIRECT
 DOMAIN-SUFFIX,githubusercontent.com,DIRECT
 DOMAIN-SUFFIX,githubassets.com,DIRECT
 DOMAIN-SUFFIX,github.io,DIRECT
 
+# --- VK контент (маршрут прямой; DNS — в [Host]) ---
+DOMAIN-SUFFIX,vk.com,DIRECT
+DOMAIN-SUFFIX,vk.ru,DIRECT
+DOMAIN-SUFFIX,userapi.com,DIRECT
+DOMAIN-SUFFIX,vkuserphoto.ru,DIRECT
+DOMAIN-SUFFIX,vkuser.net,DIRECT
+DOMAIN-SUFFIX,vkvideo.ru,DIRECT
+DOMAIN-SUFFIX,okcdn.ru,DIRECT
+
 [Host]
-# Резолв через системный DNS — быстро и надёжно, в обход перегруженного DoH.
-# Здесь всё, что критично к задержке DNS. Для апекс-домена нужна отдельная строка без "*." (звёздочка ловит только поддомены).
+# Резолв через системный DNS — быстро, в обход перегруженного DoH.
+# Для апекс-домена нужна отдельная строка без "*." (звёздочка ловит только поддомены).
 
 # --- Т-Банк ---
 *.tinkoff.ru = server:system
@@ -163,3 +172,14 @@ github.com = server:system
 *.githubusercontent.com = server:system
 *.githubassets.com = server:system
 *.github.io = server:system
+
+# --- VK контент (без рекламы): держим фото/видео на локальном DNS, иначе DoH иногда блэкхолит реальные узлы okcdn/vkuserphoto ---
+vk.com = server:system
+*.vk.com = server:system
+vk.ru = server:system
+*.vk.ru = server:system
+*.userapi.com = server:system
+*.vkuserphoto.ru = server:system
+*.vkuser.net = server:system
+*.vkvideo.ru = server:system
+*.okcdn.ru = server:system
