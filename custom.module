@@ -30,14 +30,15 @@ DOMAIN-KEYWORD,accounts.google,PROXY
 # --- Платёжный сервис ---
 DOMAIN-SUFFIX,platipomiru.com,PROXY
 
-# ======================= НАПРЯМУЮ (DIRECT) =======================
-# --- Apple (App Store/iCloud/пуши) ---
-DOMAIN-SUFFIX,apple.com,DIRECT
-DOMAIN-SUFFIX,mzstatic.com,DIRECT
-DOMAIN-SUFFIX,icloud.com,DIRECT
-DOMAIN-SUFFIX,icloud-content.com,DIRECT
-DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+# --- Apple (App Store/iCloud через тоннель; картинки mzstatic/icloud-content из РФ напрямую не грузятся, поэтому PROXY). Пуши — DIRECT, правило выше apple.com, чтобы выигрывало по порядку (иначе apple.com,PROXY перехватит). ---
+DOMAIN-SUFFIX,push.apple.com,DIRECT
+DOMAIN-SUFFIX,apple.com,PROXY
+DOMAIN-SUFFIX,mzstatic.com,PROXY
+DOMAIN-SUFFIX,icloud.com,PROXY
+DOMAIN-SUFFIX,icloud-content.com,PROXY
+DOMAIN-SUFFIX,cdn-apple.com,PROXY
 
+# ======================= НАПРЯМУЮ (DIRECT) =======================
 # --- Т-Банк (бывш. Тинькофф) ---
 DOMAIN-SUFFIX,tinkoff.ru,DIRECT
 DOMAIN-SUFFIX,tbank.ru,DIRECT
@@ -192,11 +193,3 @@ vk.ru = server:system
 ya.ru = server:system
 mail.yandex.ru = server:system
 *.mail.yandex.net = server:system
-
-# --- apple ---
-apple.com = server:system
-*.apple.com = server:system
-*.mzstatic.com = server:system
-*.icloud.com = server:system
-*.icloud-content.com = server:system
-*.cdn-apple.com = server:system
