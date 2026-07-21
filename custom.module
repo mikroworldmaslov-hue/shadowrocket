@@ -1,0 +1,182 @@
+#!name = Персональные правила
+#!desc = Поверх основного конфига
+
+# Базовый конфиг заканчивается на FINAL,DIRECT — всё несовпавшее идёт напрямую.
+# Здесь: 1) что нужно завернуть в тоннель (PROXY), 2) money/gov/бизнес — явно DIRECT
+# (защита от случайного перехвата PROXY-списками базы), 3) [Host] — быстрый DNS.
+
+[Rule]
+# ======================= ЧЕРЕЗ ТОННЕЛЬ (PROXY) =======================
+# --- AI-сервисы ---
+DOMAIN-SUFFIX,aistudio.google.com,PROXY
+DOMAIN-SUFFIX,ai.google.dev,PROXY
+DOMAIN-SUFFIX,gemini.google.com,PROXY
+DOMAIN-SUFFIX,bard.google.com,PROXY
+DOMAIN-SUFFIX,deepmind.com,PROXY
+DOMAIN-SUFFIX,deepmind.google,PROXY
+DOMAIN-SUFFIX,makersuite.google.com,PROXY
+DOMAIN-KEYWORD,generativelanguage,PROXY
+DOMAIN-KEYWORD,alkalimakersuite,PROXY
+DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,PROXY
+DOMAIN-SUFFIX,alkaliminer-pa.clients6.google.com,PROXY
+
+# --- Google-аккаунт (нужен для входа в AI) ---
+DOMAIN,accounts.google.com,PROXY
+DOMAIN-SUFFIX,accounts.google.com,PROXY
+DOMAIN,myaccount.google.com,PROXY
+DOMAIN-KEYWORD,accounts.google,PROXY
+
+# --- Платёжный сервис ---
+DOMAIN-SUFFIX,platipomiru.com,PROXY
+
+# --- Apple (App Store/iCloud/пуши) — через тоннель, так App Store грузится корректно ---
+DOMAIN-SUFFIX,push.apple.com,DIRECT
+DOMAIN-SUFFIX,apple.com,PROXY
+DOMAIN-SUFFIX,mzstatic.com,PROXY
+DOMAIN-SUFFIX,icloud.com,PROXY
+DOMAIN-SUFFIX,icloud-content.com,PROXY
+DOMAIN-SUFFIX,cdn-apple.com,PROXY
+DOMAIN-SUFFIX,vdsina.com,PROXY
+
+# ======================= НАПРЯМУЮ (DIRECT) =======================
+# --- Т-Банк (бывш. Тинькофф) ---
+DOMAIN-SUFFIX,tinkoff.ru,DIRECT
+DOMAIN-SUFFIX,tbank.ru,DIRECT
+DOMAIN-SUFFIX,t-bank-app.ru,DIRECT
+DOMAIN-SUFFIX,t-static.ru,DIRECT
+
+# --- Другие банки ---
+DOMAIN-SUFFIX,vtb.ru,DIRECT
+DOMAIN-SUFFIX,alfabank.ru,DIRECT
+DOMAIN-SUFFIX,sberbank.ru,DIRECT
+DOMAIN-SUFFIX,yandex-bank.net,DIRECT
+
+# --- Wildberries ---
+DOMAIN-SUFFIX,wb.ru,DIRECT
+DOMAIN-SUFFIX,wildberries.ru,DIRECT
+DOMAIN-SUFFIX,wbbasket.ru,DIRECT
+DOMAIN-SUFFIX,geobasket.ru,DIRECT
+DOMAIN-SUFFIX,paywb.com,DIRECT
+DOMAIN-SUFFIX,wbpay.ru,DIRECT
+
+# --- Ozon ---
+DOMAIN-SUFFIX,ozon.ru,DIRECT
+DOMAIN-SUFFIX,ozone.ru,DIRECT
+DOMAIN-SUFFIX,ozonusercontent.com,DIRECT
+
+# --- ZenMoney (агрегатор финансов) ---
+DOMAIN-SUFFIX,zenmoney.ru,DIRECT
+DOMAIN-SUFFIX,zenmoney.app,DIRECT
+
+# --- Госсервисы ---
+DOMAIN-SUFFIX,gosuslugi.ru,DIRECT
+DOMAIN-SUFFIX,nalog.ru,DIRECT
+DOMAIN-SUFFIX,nalog.gov.ru,DIRECT
+DOMAIN-SUFFIX,gu-st.ru,DIRECT
+
+# --- Мессенджер MAX ---
+DOMAIN-SUFFIX,oneme.ru,DIRECT
+
+# --- Бизнес-приложения ---
+DOMAIN-SUFFIX,aspro.cloud,DIRECT
+DOMAIN-SUFFIX,yougile.com,DIRECT
+DOMAIN-SUFFIX,kontur.ru,DIRECT
+DOMAIN-SUFFIX,kontur.host,DIRECT
+
+# --- Банковские SDK (антифрод/телеметрия) ---
+DOMAIN-SUFFIX,siftscience.com,DIRECT
+DOMAIN-SUFFIX,helpshift.com,DIRECT
+DOMAIN-SUFFIX,sentry.io,DIRECT
+DOMAIN-SUFFIX,datadoghq.com,DIRECT
+DOMAIN-KEYWORD,datadog,DIRECT
+
+# --- GitHub (без рекламы, ускоряем резолв) ---
+DOMAIN-SUFFIX,github.com,DIRECT
+DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+DOMAIN-SUFFIX,githubassets.com,DIRECT
+DOMAIN-SUFFIX,github.io,DIRECT
+
+[Host]
+# Резолв через системный DNS — быстро и надёжно, в обход перегруженного DoH.
+# Здесь всё, что критично к задержке DNS. Для апекс-домена нужна отдельная
+# строка без "*." (звёздочка ловит только поддомены).
+
+# --- Т-Банк ---
+*.tinkoff.ru = server:system
+*.tbank.ru = server:system
+*.t-bank-app.ru = server:system
+*.t-static.ru = server:system
+
+# --- Другие банки ---
+*.vtb.ru = server:system
+*.alfabank.ru = server:system
+*.sberbank.ru = server:system
+*.yandex-bank.net = server:system
+
+# --- Wildberries ---
+*.wb.ru = server:system
+*.wildberries.ru = server:system
+*.wbbasket.ru = server:system
+*.geobasket.ru = server:system
+*.paywb.com = server:system
+paywb.com = server:system
+*.wbpay.ru = server:system
+
+# --- Ozon ---
+*.ozon.ru = server:system
+*.ozone.ru = server:system
+*.ozonusercontent.com = server:system
+
+# --- ZenMoney ---
+*.zenmoney.ru = server:system
+zenmoney.ru = server:system
+*.zenmoney.app = server:system
+zenmoney.app = server:system
+
+# --- Госсервисы ---
+*.gosuslugi.ru = server:system
+*.nalog.ru = server:system
+*.nalog.gov.ru = server:system
+*.gu-st.ru = server:system
+gu-st.ru = server:system
+
+# --- Мессенджер MAX ---
+*.oneme.ru = server:system
+oneme.ru = server:system
+
+# --- Бизнес-приложения ---
+*.aspro.cloud = server:system
+aspro.cloud = server:system
+*.yougile.com = server:system
+yougile.com = server:system
+*.kontur.ru = server:system
+*.kontur.host = server:system
+
+# --- Банковские SDK ---
+*.siftscience.com = server:system
+*.helpshift.com = server:system
+*.sentry.io = server:system
+*.datadoghq.com = server:system
+
+# --- GitHub ---
+*.github.com = server:system
+github.com = server:system
+*.githubusercontent.com = server:system
+*.githubassets.com = server:system
+*.github.io = server:system
+
+# --- VK, за исключением рекламных и следящих доменов ---
+vk.com = server:system
+*.vk.com = server:system
+vk.ru = server:system
+*.vk.ru = server:system
+*.userapi.com = server:system
+*.vkuserphoto.ru = server:system
+*.vkuser.net = server:system
+*.vkvideo.ru = server:system
+*.okcdn.ru = server:system
+
+# --- yandex, за исключением рекламных и следящих доменов ---
+ya.ru = server:system
+mail.yandex.ru = server:system
+*.mail.yandex.net = server:system
