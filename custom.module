@@ -96,41 +96,6 @@ DOMAIN-SUFFIX,githubusercontent.com,DIRECT
 DOMAIN-SUFFIX,githubassets.com,DIRECT
 DOMAIN-SUFFIX,github.io,DIRECT
 
-# --- VK целиком, включая рекламу/аналитику (маршрут + DNS прямые) ---
-DOMAIN-SUFFIX,vk.com,DIRECT
-DOMAIN-SUFFIX,vk.ru,DIRECT
-DOMAIN-SUFFIX,userapi.com,DIRECT
-DOMAIN-SUFFIX,vkuserphoto.ru,DIRECT
-DOMAIN-SUFFIX,vkuser.net,DIRECT
-DOMAIN-SUFFIX,vkvideo.ru,DIRECT
-DOMAIN-SUFFIX,okcdn.ru,DIRECT
-DOMAIN-SUFFIX,vk-analytics.ru,DIRECT
-DOMAIN-SUFFIX,mail.ru,DIRECT
-DOMAIN-SUFFIX,mradx.net,DIRECT
-
-# --- Яндекс целиком, включая рекламу/аналитику/метрику ---
-DOMAIN-SUFFIX,yandex.ru,DIRECT
-DOMAIN-SUFFIX,yandex.net,DIRECT
-DOMAIN-SUFFIX,yandex.com,DIRECT
-DOMAIN-SUFFIX,yandex-net.ru,DIRECT
-DOMAIN-SUFFIX,yandexadexchange.net,DIRECT
-DOMAIN-SUFFIX,webvisor.com,DIRECT
-DOMAIN-SUFFIX,ya.ru,DIRECT
-
-# --- Likee («Лайк») + его рекламные SDK (иначе долбятся в блок и тормозят) ---
-DOMAIN-SUFFIX,like.video,DIRECT
-DOMAIN-SUFFIX,like-video.com,DIRECT
-DOMAIN-SUFFIX,likee.video,DIRECT
-DOMAIN-SUFFIX,likeevideo.ru,DIRECT
-DOMAIN-SUFFIX,appsflyersdk.com,DIRECT
-DOMAIN-SUFFIX,appsflyer.com,DIRECT
-DOMAIN-SUFFIX,moloco.com,DIRECT
-DOMAIN-SUFFIX,adsmoloco.com,DIRECT
-DOMAIN-SUFFIX,mintegral.com,DIRECT
-DOMAIN-SUFFIX,bidease.com,DIRECT
-DOMAIN-SUFFIX,flocktory.com,DIRECT
-DOMAIN,app-measurement.com,DIRECT
-
 [Host]
 # Резолв через системный DNS — быстро и надёжно, в обход перегруженного DoH.
 # Здесь всё, что критично к задержке DNS. Для апекс-домена нужна отдельная строка без "*." (звёздочка ловит только поддомены).
@@ -198,42 +163,3 @@ github.com = server:system
 *.githubusercontent.com = server:system
 *.githubassets.com = server:system
 *.github.io = server:system
-
-# --- VK целиком, включая рекламу/аналитику ---
-vk.com = server:system
-*.vk.com = server:system
-vk.ru = server:system
-*.vk.ru = server:system
-*.userapi.com = server:system
-*.vkuserphoto.ru = server:system
-*.vkuser.net = server:system
-*.vkvideo.ru = server:system
-*.okcdn.ru = server:system
-*.vk-analytics.ru = server:system
-*.mail.ru = server:system
-*.mradx.net = server:system
-
-# --- Яндекс целиком, включая рекламу/метрику/webvisor ---
-yandex.ru = server:system
-*.yandex.ru = server:system
-*.yandex.net = server:system
-*.yandex.com = server:system
-*.yandex-net.ru = server:system
-*.yandexadexchange.net = server:system
-*.webvisor.com = server:system
-ya.ru = server:system
-
-# --- Likee («Лайк») + рекламные SDK ---
-*.like.video = server:system
-*.like-video.com = server:system
-*.likee.video = server:system
-*.likeevideo.ru = server:system
-likeevideo.ru = server:system
-*.appsflyersdk.com = server:system
-*.appsflyer.com = server:system
-*.moloco.com = server:system
-*.adsmoloco.com = server:system
-*.mintegral.com = server:system
-*.bidease.com = server:system
-*.flocktory.com = server:system
-app-measurement.com = server:system
