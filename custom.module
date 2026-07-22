@@ -96,12 +96,6 @@ DOMAIN-SUFFIX,sentry.io,DIRECT
 DOMAIN-SUFFIX,datadoghq.com,DIRECT
 DOMAIN-KEYWORD,datadog,DIRECT
 
-# --- GitHub ---
-DOMAIN-SUFFIX,github.com,DIRECT
-DOMAIN-SUFFIX,githubusercontent.com,DIRECT
-DOMAIN-SUFFIX,githubassets.com,DIRECT
-DOMAIN-SUFFIX,github.io,DIRECT
-
 # --- VK контент (маршрут прямой; DNS — в [Host]) ---
 DOMAIN-SUFFIX,vk.com,DIRECT
 DOMAIN-SUFFIX,vk.ru,DIRECT
