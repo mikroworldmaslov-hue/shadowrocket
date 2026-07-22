@@ -38,6 +38,12 @@ DOMAIN-SUFFIX,icloud.com,PROXY
 DOMAIN-SUFFIX,icloud-content.com,PROXY
 DOMAIN-SUFFIX,cdn-apple.com,PROXY
 
+# --- GitHub ---
+DOMAIN-SUFFIX,github.com,PROXY
+DOMAIN-SUFFIX,githubusercontent.com,PROXY
+DOMAIN-SUFFIX,githubassets.com,PROXY
+DOMAIN-SUFFIX,github.io,PROXY
+
 # ======================= НАПРЯМУЮ (DIRECT) =======================
 # --- Т-Банк ---
 DOMAIN-SUFFIX,tinkoff.ru,DIRECT
@@ -165,13 +171,6 @@ yougile.com = server:system
 *.helpshift.com = server:system
 *.sentry.io = server:system
 *.datadoghq.com = server:system
-
-# --- GitHub ---
-*.github.com = server:system
-github.com = server:system
-*.githubusercontent.com = server:system
-*.githubassets.com = server:system
-*.github.io = server:system
 
 # --- VK контент (без рекламы): держим фото/видео на локальном DNS, иначе DoH иногда блэкхолит реальные узлы okcdn/vkuserphoto ---
 vk.com = server:system
