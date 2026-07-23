@@ -22,9 +22,15 @@ DOMAIN-KEYWORD,alkalimakersuite,PROXY
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,PROXY
 DOMAIN-SUFFIX,alkaliminer-pa.clients6.google.com,PROXY
 
-# --- Google-аккаунт (нужен для входа в AI) ---
+# --- Google-аккаунт, семейный доступ, Family Link ---
+#     Базовый конфиг уже гонит googleapis.com в тоннель. Если остальную поверхность аккаунта оставить в DIRECT, Google видит одну сессию из двух стран → данные аккаунта и «Семья» не прогружаются. Держим одним путём.
 DOMAIN,myaccount.google.com,PROXY
+DOMAIN,ogs.google.com,PROXY
 DOMAIN-KEYWORD,accounts.google,PROXY
+DOMAIN-SUFFIX,families.google.com,PROXY
+DOMAIN-SUFFIX,familylink.google.com,PROXY
+DOMAIN-SUFFIX,play.google.com,PROXY
+DOMAIN-SUFFIX,googleusercontent.com,PROXY
 
 # --- Платёжный сервис ---
 DOMAIN-SUFFIX,platipomiru.com,PROXY
