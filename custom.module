@@ -51,9 +51,8 @@ DOMAIN-SUFFIX,githubassets.com,PROXY
 DOMAIN-SUFFIX,github.io,PROXY
 
 # --- Другие сервисы ---
-DOMAIN-SUFFIX,app.ftscrt.com,PROXY
-DOMAIN-SUFFIX,outage.fatsecret.com,PROXY
-DOMAIN-SUFFIX,android.fatsecret.com,PROXY
+DOMAIN-SUFFIX,fatsecret.com,PROXY
+DOMAIN-SUFFIX,ftscrt.com,PROXY
 
 # ======================= НАПРЯМУЮ (DIRECT) =======================
 # --- Т-Банк ---
