@@ -53,6 +53,7 @@ DOMAIN-SUFFIX,github.io,PROXY
 # --- Другие сервисы ---
 DOMAIN-SUFFIX,fatsecret.com,PROXY
 DOMAIN-SUFFIX,ftscrt.com,PROXY
+DOMAIN-SUFFIX,lifesum.com,PROXY
 
 # ======================= НАПРЯМУЮ (DIRECT) =======================
 # --- Т-Банк ---
