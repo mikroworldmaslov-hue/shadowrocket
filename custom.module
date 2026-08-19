@@ -54,6 +54,8 @@ DOMAIN-SUFFIX,github.io,PROXY
 DOMAIN-SUFFIX,fatsecret.com,PROXY
 DOMAIN-SUFFIX,ftscrt.com,PROXY
 DOMAIN-SUFFIX,lifesum.com,PROXY
+DOMAIN-SUFFIX,crisp.chat,PROXY
+DOMAIN-SUFFIX,datocms.com,PROXY
 
 # ======================= НАПРЯМУЮ (DIRECT) =======================
 # --- Т-Банк ---
